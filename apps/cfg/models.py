@@ -42,7 +42,12 @@ class ArticleManager(ModelManager):
         """已发布文章
         """
         return self.filter(status=self.STATUS_PUBLISHED)
-        
+
+    def recommand_articles(self):
+        """推荐文章
+        """
+        return self.published_articles().filter(is_recommand=True)
+
 
 class Article(models.Model):
     """站点说明
@@ -57,6 +62,7 @@ class Article(models.Model):
     status = models.PositiveSmallIntegerField(choices=ArticleManager.ARTICLE_STATUS,
         default=ArticleManager.STATUS_EDITING,
         verbose_name='状态')
+    is_recommand = models.BooleanField(default=False, verbose_name='推荐')
 
     objects = ArticleManager()
 
