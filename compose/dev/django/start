@@ -4,4 +4,5 @@ python manage.py migrate
 # python manage.py runserver_plus 0.0.0.0:8000
 # python manage.py runserver 0.0.0.0:8000
 
-gunicorn -c /app/compose/dev/django/gunicorn.py server.wsgi:application
+# gunicorn -c /app/compose/dev/django/gunicorn.py server.wsgi:application
+daphne -b 0.0.0.0 -p 8000 --access-log logs/daphne.log  server.asgi:application
