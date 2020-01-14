@@ -39,6 +39,7 @@ CUSTOM_APPS = [
     'apps.users',
     # 'apps.area',
     'apps.cfg',
+    'apps.products',
 ]
 THIRD_APPS = [
     'mptt',
