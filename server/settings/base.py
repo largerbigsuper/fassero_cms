@@ -47,6 +47,7 @@ THIRD_APPS = [
     'rest_framework',
     'ckeditor',
     'ckeditor_uploader',
+    'drf_yasg',
 ]
 
 INSTALLED_APPS += CUSTOM_APPS
