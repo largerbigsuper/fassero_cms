@@ -28,5 +28,5 @@ D          request time in microseconds
 L          request time in decimal seconds
 p          process ID
 """
-accesslog = "/app/logs/gunicorn_access.log"      #访问日志文件
-errorlog = "/app/logs/gunicorn_error.log"        #错误日志文件
+accesslog = "logs/gunicorn_access.log"      #访问日志文件
+errorlog = "logs/gunicorn_error.log"        #错误日志文件
