@@ -11,8 +11,6 @@ RUN chmod +x /start
 
 WORKDIR /app
 
-RUN mkdir -p /app/logs
-
 ADD . /app
 
 EXPOSE 8000

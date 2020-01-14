@@ -9,8 +9,6 @@ RUN pip install -r /requirements/dev.txt -i http://mirrors.aliyun.com/pypi/simpl
 COPY ./compose/dev/django/start /start
 RUN chmod +x /start
 
-RUN mkdir -p /app/logs
-
 WORKDIR /app
 
 ADD . /app
