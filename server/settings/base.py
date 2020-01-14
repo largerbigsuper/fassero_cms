@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+from .settings_ckeditor import *
+
 import environ
 
 ROOT_DIR = (
@@ -35,13 +37,16 @@ INSTALLED_APPS = [
 ]
 CUSTOM_APPS = [
     'apps.users',
-    'apps.area',
+    # 'apps.area',
+    'apps.cfg',
 ]
 THIRD_APPS = [
     'mptt',
     'django_extensions',
     'django_filters',
     'rest_framework',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 INSTALLED_APPS += CUSTOM_APPS
@@ -133,6 +138,8 @@ DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 # important setting
 AUTH_USER_MODEL = 'users.User'
 
+# Storage
+DEFAULT_FILE_STORAGE = 'utils.qiniucloud.StorageObject'
 
 # REST FRAMEWORK
 
@@ -170,4 +177,16 @@ REST_FRAMEWORK = {
         '%m/%d/%y %H:%M',  # '10/25/06 14:30'
         '%m/%d/%y',  # '10/25/06'
     ]
+}
+
+# qiniu
+QINIU_ACCESS_KEY = 'r9Wn86UUlqWqRbt1E4Mvl8lPXPcZpSSH1t2n0MR6'
+QINIU_SECRET_KEY = 'OdRXdCnUSpDdkY5n4-PUQT3psAm2zJMiHvgNfU_S'
+QINIU_BUCKET_NAME_DICT = {
+    'image': 'images-beepcrypto',
+    'video': 'videos-beepcrypto'
+}
+QINIU_BUCKET_DOMAIN_DICT = {
+    'image': 'https://cdn.beepcrypto.com/',
+    'video': 'https://cdn.beepcrypto.com/'
 }

@@ -1,7 +1,7 @@
 from rest_framework import routers
 
-from apps.area.api.viewsets import AreaViewSet
+from apps.cfg.api.viewsets import ArticleViewSet
 
 router = routers.DefaultRouter()
-# router.register('users', UserViewSet, 'user')
-router.register('area', AreaViewSet, 'api-area')
+
+router.register('article', ArticleViewSet, 'api-article')
