@@ -18,3 +18,4 @@ daphne==2.3.0
 
 #docs
 drf-yasg==1.17.0
+pycryptodome==3.9.4

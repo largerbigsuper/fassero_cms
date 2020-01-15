@@ -1,12 +1,16 @@
 import requests
+from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+
 
 from ..models import mm_User
-from .serializers import (UserSerializer, ProfileSerializer, MiniprogramLoginSerializer)
+from .serializers import (UserSerializer, UserProfileSerializer, MiniprogramLoginSerializer)
 
 from utils.wechat.WXBizDataCrypt import WXBizDataCrypt
+from utils.common import process_login, process_logout
 
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
@@ -50,6 +54,32 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
         mini_openid = ret_json['openid']
         user = mm_User.get_user_by_miniprogram(avatar_url, name,  mini_openid=mini_openid, unionid=unionid)
         process_login(request, user)
-        serializer_user = ProfileSerializer(user)
+        serializer_user = UserProfileSerializer(user)
         data = serializer_user.data
+
         return Response(data=data)
+
+    @action(detail=False, methods=['get'])
+    def logout(self, request):
+        """退登"""
+        process_logout(request)
+        return Response()
+
+    @action(detail=False, methods=['get', 'post'], permission_classes=[IsAuthenticated], serializer_class=UserProfileSerializer)
+    def profile(self, request):
+        """个人信息获取／修改"""
+
+        if request.method == 'GET':
+            serializer = self.serializer_class(request.user)
+            return Response(data=serializer.data)
+        else:
+            serializer = self.serializer_class(
+                request.user, data=request.data, partial=True)
+            if serializer.is_valid():
+                avatar_url = serializer.validated_data.pop('avatar_url', '')
+                if avatar_url:
+                    serializer.validated_data['avatar'] = avatar_url
+                serializer.save()
+                return Response(data=serializer.data)
+            else:
+                return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)

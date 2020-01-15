@@ -19,10 +19,13 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'avatar', 'name']
 
 
-class ProfileSerializer(serializers.ModelSerializer):
-
+class UserProfileSerializer(serializers.ModelSerializer):
+    
+    avatar_url = serializers.CharField(write_only=True, allow_blank=True, required=False)
+    
     class Meta:
         model = User
-        fields = ['id', 'username', 'avatar', 'name']
+        fields = ['id', 'username', 'avatar', 'name', 'avatar_url']
+        read_only_fields = ['avatar', 'username']
 
 
