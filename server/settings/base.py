@@ -194,3 +194,9 @@ QINIU_BUCKET_DOMAIN_DICT = {
     'image': 'https://cdn.beepcrypto.com/',
     'video': 'https://cdn.beepcrypto.com/'
 }
+
+
+MINI_PROGRAM_APP_ID = 'wx4acdaad6d2264282'
+MINI_PROGRAM_APP_SECRET = 'b837c6f3c662f7b80df35c0bc133cc93'
+MINI_PROGRAM_LOGIN_URL = 'https://api.weixin.qq.com/sns/jscode2session?appid={}&secret={}&grant_type=userization_code&js_code='.format(MINI_PROGRAM_APP_ID, MINI_PROGRAM_APP_SECRET)
+MINI_PROGRAM_ACCESS_TOKEN_URL = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}'.format(MINI_PROGRAM_APP_ID, MINI_PROGRAM_APP_SECRET)
