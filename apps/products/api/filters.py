@@ -1,23 +1,23 @@
 from django_filters import rest_framework as filters
 
-from ..models import SkuType, Sku
+from ..models import ProductType, Product
 
-class SkuTypeFilter(filters.FilterSet):
+class ProductTypeFilter(filters.FilterSet):
 
     class Meta:
-        model = SkuType
+        model = ProductType
         fields = {
             'parent': ['exact'],
             'level': ['exact'],
         }
 
 
-class SkuFilter(filters.FilterSet):
+class ProductFilter(filters.FilterSet):
 
     class Meta:
-        model = Sku
+        model = Product
         fields = {
-            'sku_type': ['exact'],
+            'product_type': ['exact'],
             'is_recommand': ['exact'],
             'name': ['contains'],
             'detail': ['contains'],

@@ -6,5 +6,5 @@ from apps.products.api import viewsets as products_viewsets
 router = routers.DefaultRouter()
 
 router.register('article', ArticleViewSet, 'api-article')
-router.register('sku_type', products_viewsets.SkuTypeViewSet, 'api-sku-type')
-router.register('sku', products_viewsets.SkuViewSet, 'api-sku')
+router.register('product_type', products_viewsets.ProductTypeViewSet, 'api-product-type')
+router.register('product', products_viewsets.ProductViewSet, 'api-product')

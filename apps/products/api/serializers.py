@@ -3,22 +3,22 @@ from django.db import transaction
 from django.db.models import F
 
 
-from ..models import (Sku, SkuType)
+from ..models import (Product, ProductType)
 
 from utils.exceptions import CommonException
 
-class SkuTypeSerializer(serializers.ModelSerializer):
+class ProductTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = SkuType
+        model = ProductType
         fields = ['id', 'name', 'logo', 'parent', 'level']
 
 
-class SkuSerializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
 
-    sku_type = SkuTypeSerializer()
+    product_type = ProductTypeSerializer()
 
     class Meta:
-        model = Sku
-        fields = ['id', 'sku_type', 'name', 'cover', 'detail', 'total_left', 'create_at']
+        model = Product
+        fields = ['id', 'product_type', 'name', 'cover', 'detail', 'total_left', 'create_at']
 
