@@ -55,6 +55,7 @@ class Article(models.Model):
 
     site_module = models.ForeignKey(SiteModule, on_delete=models.CASCADE, null=True, blank=True, verbose_name='站点模块')
     title = models.CharField(max_length=150, default='', verbose_name='标题')
+    desc = models.CharField(max_length=500, default='', verbose_name='简介')
     cover = models.ImageField(verbose_name='封面图')
     content = models.TextField(verbose_name='内容')
     create_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')

@@ -17,5 +17,5 @@ class ArticleAdmin(admin.ModelAdmin):
     """
     form = ArticleAdminForm
 
-    list_display = ['id', 'site_module', 'title', 'cover', 'create_at', 'status']
+    list_display = ['id', 'site_module', 'title', 'cover', 'desc', 'create_at', 'status']
     list_filter = ['site_module']
