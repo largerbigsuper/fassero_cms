@@ -48,7 +48,7 @@ class UserManager(AuthUserManager, ModelManager):
 
 class User(AbstractUser):
     
-    avatar = models.ImageField(verbose_name='头像')
+    avatar = models.ImageField(max_length=200, verbose_name='头像')
     mini_openid = models.CharField(max_length=64, unique=True, null=True, blank=True, verbose_name='小程序账号')
     openid = models.CharField(max_length=64, unique=True, null=True, blank=True, verbose_name='微信账号')
     unionid = models.CharField(max_length=64, unique=True, null=True, blank=True, verbose_name='微信unionid')
