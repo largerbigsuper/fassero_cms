@@ -8,6 +8,26 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 from utils.modelmanager import ModelManager
 
+class ProductTagManager(ModelManager):
+    pass
+
+class ProductTag(models.Model):
+
+    name = models.CharField(max_length=20, unique=True,verbose_name='标签名')
+
+    objects = ProductTagManager()
+
+    class Meta:
+        db_table = 'cms_product_tag'
+        ordering = ['-id']
+        verbose_name = '产品标签'
+        verbose_name_plural = '产品标签'
+    
+    def __str__(self):
+        return self.name
+
+mm_ProductTag = ProductTag.objects
+
 
 class ProductTypeManager(ModelManager):
     
@@ -88,6 +108,7 @@ class Product(models.Model):
     update_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
     order_num = models.IntegerField(default=10000, verbose_name='排序值[越小越靠前]')
     is_recommand = models.BooleanField(default=False, blank=True, verbose_name='推荐')
+    product_tag = models.ManyToManyField(ProductTag, related_name='tags', db_table='cms_product_product_tag', blank=True, verbose_name='产品标签')
     
     objects = ProductManager()
 

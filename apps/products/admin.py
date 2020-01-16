@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
 
-from .models import (Product, ProductType, mm_ProductType)
+from .models import (Product, ProductType, mm_ProductType, ProductTag)
 from .forms import ProductAdminForm
 
 @admin.register(Product)
@@ -11,7 +11,7 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ['name']
     ordering = ['order_num', '-create_at']
     list_filter = ['product_type']
-    # autocomplete_fields = ['product_type']
+    autocomplete_fields = ['product_tag']
 
     readonly_fields = ['cover_image']
 
@@ -51,3 +51,10 @@ class ProductTypeAdmin(admin.ModelAdmin):
 
     lookup_products.short_description = '查看产品'
 
+
+@admin.register(ProductTag)
+class ProductTagAdmin(admin.ModelAdmin):
+
+    list_display = ['id', 'name']
+    search_fields = ['name']
+    

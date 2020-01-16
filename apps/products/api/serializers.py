@@ -3,9 +3,15 @@ from django.db import transaction
 from django.db.models import F
 
 
-from ..models import (Product, ProductType)
+from ..models import (Product, ProductType, ProductTag)
 
 from utils.exceptions import CommonException
+
+class ProductTagSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ProductTag
+        fields = ['id', 'name']
 
 class ProductTypeSerializer(serializers.ModelSerializer):
 
@@ -17,8 +23,9 @@ class ProductTypeSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
 
     product_type = ProductTypeSerializer()
+    product_tag = ProductTagSerializer(many=True)
 
     class Meta:
         model = Product
-        fields = ['id', 'product_type', 'name', 'cover', 'detail', 'total_left', 'create_at']
+        fields = ['id', 'product_type', 'name', 'cover', 'detail', 'total_left', 'create_at', 'product_tag']
 

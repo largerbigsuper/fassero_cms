@@ -22,7 +22,7 @@ class ProductTypeViewSet(viewsets.ReadOnlyModelViewSet):
 
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
 
-    queryset = mm_Product.published_product()
+    queryset = mm_Product.published_product().select_related('product_type').prefetch_related('product_tag')
     filter_class = ProductFilter
     serializer_class = ProductSerializer
 
