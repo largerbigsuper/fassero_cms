@@ -16,7 +16,7 @@ class ProductTypeViewSet(viewsets.ReadOnlyModelViewSet):
         if self.request.query_params:
             return mm_ProductType.all()
         else:
-            return mm_ProductType.top_level_type()
+            return mm_ProductType.get_level_type()
 
 
 

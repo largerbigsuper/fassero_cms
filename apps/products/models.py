@@ -11,10 +11,10 @@ from utils.modelmanager import ModelManager
 
 class ProductTypeManager(ModelManager):
     
-    def top_level_type(self):
+    def get_level_type(self, level=0):
         """一级分类
         """
-        return self.filter(level=0)
+        return self.filter(level=level)
 
 
 class ProductType(MPTTModel):
