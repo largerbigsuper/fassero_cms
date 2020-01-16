@@ -38,7 +38,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
         logger.info('encryptedData: {}'.format(encryptedData))
         logger.info('iv: {}'.format(iv))
         
-        wx_res = requests.get(settings.MINI_PRAGRAM_LOGIN_URL + code)
+        wx_res = requests.get(settings.MINI_PROGRAM_LOGIN_URL + code)
         ret_json = wx_res.json()
         logger.info('code: {}, name: {}'.format(code, name))
         logger.info('wechat resp: {}'.format(ret_json))
