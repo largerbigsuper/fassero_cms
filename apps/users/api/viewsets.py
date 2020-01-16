@@ -1,3 +1,5 @@
+import logging
+
 import requests
 from rest_framework import status
 from rest_framework import viewsets
@@ -12,6 +14,7 @@ from .serializers import (UserSerializer, UserProfileSerializer, MiniprogramLogi
 from utils.wechat.WXBizDataCrypt import WXBizDataCrypt
 from utils.common import process_login, process_logout
 
+logger = logging.getLogger('api_weixin')
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     
