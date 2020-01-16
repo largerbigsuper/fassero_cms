@@ -5,6 +5,8 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm
 from django.utils.translation import gettext, gettext_lazy as _
 from django.utils.html import mark_safe
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+
 
 User = get_user_model()
 
@@ -12,6 +14,10 @@ class MyUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = User
         fields = '__all__'
+        widgets = {
+            'desc': CKEditorUploadingWidget(),
+        }
+
 
 class UserCreationForm(forms.ModelForm):
     """
