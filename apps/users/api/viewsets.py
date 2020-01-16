@@ -17,7 +17,10 @@ from utils.common import process_login, process_logout
 
 logger = logging.getLogger('api_weixin')
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
+class UserViewSet(viewsets.GenericViewSet, 
+                mixins.RetrieveModelMixin,
+                mixins.UpdateModelMixin, 
+                mixins.ListModelMixin,):
     
     permission_classes = []
     queryset = mm_User.all()
