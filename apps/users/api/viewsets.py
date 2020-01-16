@@ -17,8 +17,9 @@ from utils.common import process_login, process_logout
 
 logger = logging.getLogger('api_weixin')
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
     
+    permission_classes = []
     queryset = mm_User.all()
     serializer_class = UserSerializer
 
