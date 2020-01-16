@@ -200,3 +200,91 @@ MINI_PROGRAM_APP_ID = 'wx4acdaad6d2264282'
 MINI_PROGRAM_APP_SECRET = 'b837c6f3c662f7b80df35c0bc133cc93'
 MINI_PROGRAM_LOGIN_URL = 'https://api.weixin.qq.com/sns/jscode2session?appid={}&secret={}&grant_type=userization_code&js_code='.format(MINI_PROGRAM_APP_ID, MINI_PROGRAM_APP_SECRET)
 MINI_PROGRAM_ACCESS_TOKEN_URL = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}'.format(MINI_PROGRAM_APP_ID, MINI_PROGRAM_APP_SECRET)
+
+
+import pathlib
+LOG_ROOT = ROOT_DIR.path("logs")
+
+pathlib.Path(LOG_ROOT).mkdir(parents=True, exist_ok=True)
+
+LOG_LEVEL_DEBUG = 'DEBUG'
+LOG_LEVEL_INFO = 'INFO'
+LOG_LEVEL_WARNING = 'WARNING'
+LOG_LEVEL_ERROR = 'ERROR'
+LOG_LEVEL_CRITICAL = 'CRITICAL'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {asctime} {message}',
+            'style': '{',
+        },
+    },
+    "filters": {
+        "require_debug_false": {
+            "()": "django.utils.log.RequireDebugFalse",
+        },
+        "require_debug_true": {
+            "()": "django.utils.log.RequireDebugTrue",
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
+        "request_file": {
+            "level": LOG_LEVEL_INFO,
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": "./logs/requests.log",
+            "maxBytes": 1024 * 1024 * 10,  # 10MB
+            "backupCount": 10,
+            "formatter": "verbose"
+        },
+        "qiniu_file": {
+            "level": LOG_LEVEL_INFO,
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": "./logs/qiniu.log",
+            "maxBytes": 1024 * 1024 * 10,  # 10MB
+            "backupCount": 10,
+            "formatter": "verbose"
+        },
+        "api_weixin_file": {
+            "level": LOG_LEVEL_INFO,
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": "./logs/api_weixin.log",
+            "maxBytes": 1024 * 1024 * 10,  # 10MB
+            "backupCount": 10,
+            "formatter": "verbose"
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['request_file', 'mail_admins'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'qiniu': {
+            'handlers': ['qiniu_file', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'api_weixin': {
+            'handlers': ['api_weixin_file', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    }
+}
