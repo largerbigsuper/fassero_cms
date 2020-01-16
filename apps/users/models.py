@@ -50,6 +50,10 @@ class User(AbstractUser):
     openid = models.CharField(max_length=64, unique=True, null=True, blank=True, verbose_name='微信账号')
     unionid = models.CharField(max_length=64, unique=True, null=True, blank=True, verbose_name='微信unionid')
     name = models.CharField(max_length=30, blank=True, verbose_name='昵称')
+    desc = models.TextField(blank=True, verbose_name='个人简介')
+    phone = models.CharField(max_length=30, default='', blank=True, verbose_name='联系电话')
+    position = models.CharField(max_length=30, default='', blank=True, verbose_name='职位')
+    address = models.CharField(max_length=30, default='', blank=True, verbose_name='地址')
 
     objects = UserManager()
 
