@@ -1,9 +1,9 @@
 from rest_framework import viewsets
 from rest_framework.decorators import action
 
-from .serializers import ArticleSerializer
+from .serializers import ArticleSerializer, IndexItemSerializer
 from .filters import ArticleFilter
-from ..models import mm_Article
+from ..models import mm_Article, mm_IndexItem
 
 
 class ArticleViewSet(viewsets.ReadOnlyModelViewSet):
@@ -20,3 +20,8 @@ class ArticleViewSet(viewsets.ReadOnlyModelViewSet):
         """
         return super().list(request)
 
+
+class IndexItemViewSet(viewsets.ReadOnlyModelViewSet):
+
+    queryset = mm_IndexItem.all()
+    serializer_class = IndexItemSerializer

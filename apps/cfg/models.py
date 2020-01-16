@@ -77,3 +77,29 @@ class Article(models.Model):
         return self.title
 
 mm_Article = Article.objects
+
+
+class IndexItemManager(ModelManager):
+    pass
+
+class IndexItem(models.Model):
+
+    cover = models.ImageField(verbose_name='封面图')
+    product = models.ForeignKey('products.Product', on_delete=models.CASCADE, null=True, blank=True, verbose_name='产品')
+    article = models.ForeignKey('cfg.Article', on_delete=models.CASCADE, null=True, blank=True, verbose_name='文章')
+    order_num = models.IntegerField(default=10000, verbose_name='排序值[越小越靠前]')
+    create_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
+    update_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+
+    objects = IndexItemManager()
+
+    class Meta:
+        db_table = 'cms_index_item'
+        ordering = ['order_num', '-id']
+        verbose_name = '首页轮播'
+        verbose_name_plural = '首页轮播'
+
+    def __str__(self):
+        return str(self.id)
+
+mm_IndexItem = IndexItem.objects
