@@ -23,7 +23,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(ProductType)
 class ProductTypeAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'logo_image', 'parent', 'child_product_type', 'lookup_products']
+    list_display = ['id', 'name', 'logo_image', 'parent', 'child_product_type', 'lookup_products', 'order_num']
     search_fields = ['name']
     autocomplete_fields = ['parent']
     list_filter = ['parent']

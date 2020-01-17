@@ -41,6 +41,7 @@ class ProductType(MPTTModel):
     name = models.CharField(max_length=20, unique=True, db_index=True, verbose_name='类型')
     logo = models.ImageField(blank=True, verbose_name='封面图')
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    order_num = models.IntegerField(default=10000, verbose_name='排序值[越小越靠前]')
 
     objects = ProductTypeManager()
 
@@ -49,7 +50,7 @@ class ProductType(MPTTModel):
 
     class Meta:
         db_table = 'cms_product_type'
-        ordering = ['-id']
+        ordering = ['level', 'order_num', 'id']
         verbose_name = '产品类型'
         verbose_name_plural = '产品类型'
 
