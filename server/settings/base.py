@@ -184,15 +184,13 @@ REST_FRAMEWORK = {
 }
 
 # qiniu
-QINIU_ACCESS_KEY = 'r9Wn86UUlqWqRbt1E4Mvl8lPXPcZpSSH1t2n0MR6'
-QINIU_SECRET_KEY = 'OdRXdCnUSpDdkY5n4-PUQT3psAm2zJMiHvgNfU_S'
+QINIU_ACCESS_KEY = '59fwRI4hRMMj43DJiFPKVuHJZjeCYqvncehGUcLo'
+QINIU_SECRET_KEY = 'h-Sy11-RuxAbeUtNK0JCiDyQ3MaeOycDe8vUY6G9'
 QINIU_BUCKET_NAME_DICT = {
-    'image': 'images-beepcrypto',
-    'video': 'videos-beepcrypto'
+    'image': 'gsimages',
 }
 QINIU_BUCKET_DOMAIN_DICT = {
-    'image': 'https://cdn.beepcrypto.com/',
-    'video': 'https://cdn.beepcrypto.com/'
+    'image': 'http://cdn.fassero.cn/',
 }
 
 

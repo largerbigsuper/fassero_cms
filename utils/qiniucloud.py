@@ -8,7 +8,7 @@ from django.conf import settings
 from qiniu import Auth, put_data, put_file
 
 # 图片样式
-beep_logo_cover = '-beep_logo'
+cover_suffix = ''
 
 class QiniuService:
     # 构建鉴权对象
@@ -122,7 +122,7 @@ class StorageObject(Storage):
             if file_type in ['mp4']:
                 return base_url
             else: 
-                return base_url + beep_logo_cover
+                return base_url + cover_suffix
         else:
             # 上传失败
             raise Exception("上传七牛失败")
