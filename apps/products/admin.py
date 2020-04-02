@@ -47,6 +47,8 @@ class ProductTypeAdmin(admin.ModelAdmin):
     child_product_type.short_description = '子分类'
 
     def lookup_products(self, obj):
+        if obj.level < 2:
+            return None
         return mark_safe('<a href="/admin/products/product/?product_type={}">查看产品</a>'.format(obj.id))
 
     lookup_products.short_description = '查看产品'
