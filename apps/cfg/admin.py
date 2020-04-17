@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
+from django.db import models
 
 from .models import SiteModule, Article, IndexItem
 from .forms import ArticleAdminForm
+from django.forms.widgets import TextInput
 
 @admin.register(SiteModule)
 class SiteModuleAdmin(admin.ModelAdmin):
@@ -27,6 +29,10 @@ class ArticleAdmin(admin.ModelAdmin):
         return mark_safe('<img src="{}" width="150" height="150" />'.format(obj.cover))
 
     cover_image.short_description = '图片'
+
+    formfield_overrides = {
+        models.CharField: {'widget': TextInput(attrs={'size':'120'})},
+    }
 
 @admin.register(IndexItem)
 class IndexItemAdmin(admin.ModelAdmin):
