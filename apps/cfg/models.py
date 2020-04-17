@@ -58,6 +58,7 @@ class Article(models.Model):
     desc = models.CharField(max_length=500, default='', verbose_name='简介')
     cover = models.ImageField(verbose_name='封面图')
     content = models.TextField(verbose_name='内容')
+    link = models.CharField(max_length=300, default='', blank=True, verbose_name='文章链接')
     create_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     update_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
     status = models.PositiveSmallIntegerField(choices=ArticleManager.ARTICLE_STATUS,

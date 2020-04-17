@@ -19,7 +19,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields = ['id', 'site_module', 'title','desc', 'cover', 'content', 'create_at', 'update_at']
+        fields = ['id', 'site_module', 'title', 'desc', 'cover', 'content', 'link', 'create_at', 'update_at']
 
 class IndexItemSerializer(serializers.ModelSerializer):
     """首页轮播图
