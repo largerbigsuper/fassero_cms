@@ -1,4 +1,4 @@
-django==3.0.2
+django==3.1.12
 django-environ==0.4.5
 qiniu==7.2.6
 mysqlclient==1.4.6
